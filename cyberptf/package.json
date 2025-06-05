@@ -1,5 +1,5 @@
 {
-  "name": "vite-project",
+  "name": "cyberptf",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^0.511.0",
+    "lucide": "^0.513.0",
+    "lucide-react": "^0.513.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.8"
