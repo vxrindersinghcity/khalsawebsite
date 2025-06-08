@@ -4,801 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khalsa Scaffolding Ltd - Professional scaffolding services in Greater London. U-shape, L-shape, bridge systems, and complete coverage solutions.">
+    <meta name="keywords" content="scaffolding, London, construction, Khalsa, professional scaffolding, scaffolding services">
+    <meta name="author" content="Khalsa Scaffolding Ltd">
+    
     <title>KHALSA SCAFFOLDING LTD - Professional Scaffolding Services</title>
+    
+    <!-- External Stylesheets -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-orange: #ff8c00;
-            --secondary-orange: #ff6b35;
-            --dark-blue: #1e3a5f;
-            --light-blue: #4a90c2;
-            --dark-gray: #2c3e50;
-            --light-gray: #ecf0f1;
-            --white: #ffffff;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --shadow-hover: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--white);
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--dark-blue), var(--dark-gray));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            animation: fadeOut 0.8s ease-in-out 3s forwards;
-        }
-
-        .loading-logo {
-            max-width: 300px;
-            width: 60%;
-            height: auto;
-            margin-bottom: 2rem;
-            animation: logoFloat 2s ease-in-out infinite alternate;
-        }
-
-        .loading-text {
-            color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            opacity: 0.9;
-        }
-
-        @keyframes logoFloat {
-            from { 
-                transform: translateY(-10px);
-                filter: drop-shadow(0 10px 20px rgba(255, 140, 0, 0.3));
-            }
-            to { 
-                transform: translateY(10px);
-                filter: drop-shadow(0 20px 40px rgba(255, 140, 0, 0.5));
-            }
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        .main-content {
-            opacity: 0;
-            animation: fadeInContent 1s ease-in-out 3.5s forwards;
-        }
-
-        @keyframes fadeInContent {
-            to { opacity: 1; }
-        }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #000000, #1a1a1a);
-            color: var(--white);
-            padding: 1rem 0;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,140,0,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            gap: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .khanda-logo {
-            width: 50px;
-            height: 50px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        .company-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .contact-header {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item i {
-            color: rgba(255,255,255,0.8);
-        }
-
-        /* Navigation */
-        .navbar {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            padding: 0 2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            display: block;
-            padding: 1.2rem 1.5rem;
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-orange);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background: var(--primary-orange);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 80%;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(30, 58, 95, 0.9), rgba(44, 62, 80, 0.9)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234a90c2" width="1200" height="800"/><g opacity="0.3"><rect x="0" y="0" width="100" height="100" fill="%23fff"/><rect x="200" y="100" width="100" height="100" fill="%23fff"/><rect x="400" y="200" width="100" height="100" fill="%23fff"/></g></svg>');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 8rem 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--primary-orange);
-            color: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary-orange);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border-color: var(--white);
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary-orange);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: var(--light-gray);
-            padding: 4rem 0;
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-icon {
-            font-size: 3rem;
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 6rem 0;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--dark-blue);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--primary-orange);
-            border-radius: 2px;
-        }
-
-        .section-description {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--white);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .about-text h3 {
-            color: var(--dark-blue);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-        }
-
-        .about-image {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Services Section */
-        .services {
-            background: var(--light-gray);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            text-align: center;
-            border-top: 4px solid var(--primary-orange);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary-orange);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-title {
-            font-size: 1.3rem;
-            color: var(--dark-blue);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            background: var(--white);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: var(--white);
-            padding: 2rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--light-gray);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-
-        .contact-info h3 {
-            color: var(--dark-blue);
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: var(--light-gray);
-            border-radius: 10px;
-        }
-
-        .contact-detail i {
-            font-size: 1.2rem;
-            color: var(--primary-orange);
-            margin-right: 1rem;
-            width: 20px;
-        }
-
-        .contact-detail a {
-            color: var(--text-dark);
-            text-decoration: none;
-        }
-
-        .contact-detail a:hover {
-            color: var(--primary-orange);
-        }
-
-        .quote-form {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-
-        .quote-form h3 {
-            color: var(--dark-blue);
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--light-gray);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-orange);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            height: 120px;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-blue);
-            color: var(--white);
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-section h3 {
-            color: var(--primary-orange);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            line-height: 1.8;
-        }
-
-        .footer-section a:hover {
-            color: var(--primary-orange);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-orange);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--secondary-orange);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 3rem;
-            padding-top: 2rem;
-            text-align: center;
-            color: rgba(255,255,255,0.6);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            cursor: pointer;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 1rem;
-            }
-
-            .contact-header {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .nav-container {
-                justify-content: space-between;
-            }
-
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                box-shadow: var(--shadow);
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero {
-                padding: 4rem 0;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .stats-container,
-            .services-grid,
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 4rem 0;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-orange);
-            color: var(--white);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            background: var(--secondary-orange);
-            transform: translateY(-3px);
-        }
-    </style>
+    
+    <!-- Main Stylesheet -->
+    <link href="index.css" rel="stylesheet">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- TikTok Embed Script -->
+    <script async src="https://www.tiktok.com/embed.js"></script>
 </head>
 
 <body>
     <!-- Loading Screen -->
-    <div class="loading-screen">
-        <img class="loading-logo" src="logo.png" alt="Khalsa Logo">
+    <div class="loading-screen" id="loadingScreen">
+        <img class="loading-logo" src="images/logo.png" alt="Khalsa Logo" width="300" height="200">
         <div class="loading-text">Professional Scaffolding Services</div>
     </div>
 
@@ -808,35 +36,36 @@
         <header class="header">
             <div class="header-container">
                 <div class="logo-section">
-                    <img class="khanda-logo" src="khanda.png" alt="Khanda">
+                    <img class="khanda-logo" src="images/khanda.png" alt="Khanda" width="50" height="50">
                     <h1 class="company-title">KHALSA SCAFFOLDING LTD</h1>
                 </div>
                 <div class="contact-header">
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>07741252013</span>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <a href="tel:07741252013" aria-label="Call us">07741252013</a>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>khalsascaffolding@outlook.com</span>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <a href="mailto:khalsascaffolding@outlook.com" aria-label="Email us">khalsascaffolding@outlook.com</a>
                     </div>
                 </div>
             </div>
         </header>
 
         <!-- Navigation -->
-        <nav class="navbar">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
             <div class="nav-container">
-                <ul class="nav-menu" id="nav-menu">
+                <ul class="nav-menu" id="navMenu">
                     <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
                     <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="#tiktok" class="nav-link">Videos</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                     <li class="nav-item"><a href="#quote" class="nav-link">Free Quote</a></li>
                 </ul>
-                <button class="mobile-menu-btn" id="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
         </nav>
@@ -844,7 +73,7 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-container">
-                <h1 class="hero-title fade-in">Professional Scaffolding Solutions</h1>
+                <h2 class="hero-title fade-in">Professional Scaffolding Solutions</h2>
                 <p class="hero-subtitle fade-in">Trusted by customers for our commitment to deadlines and exceptional workmanship quality</p>
                 <div class="cta-buttons fade-in">
                     <a href="#quote" class="btn btn-primary">Get Free Quote</a>
@@ -854,26 +83,26 @@
         </section>
 
         <!-- Stats Section -->
-        <section class="stats">
+        <section class="stats" aria-label="Company statistics">
             <div class="stats-container">
                 <div class="stat-item fade-in">
-                    <div class="stat-icon"><i class="fas fa-hard-hat"></i></div>
-                    <div class="stat-number">500+</div>
+                    <div class="stat-icon"><i class="fas fa-hard-hat" aria-hidden="true"></i></div>
+                    <div class="stat-number" data-target="500">0</div>
                     <div class="stat-label">Projects Completed</div>
                 </div>
                 <div class="stat-item fade-in">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-number">100+</div>
+                    <div class="stat-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+                    <div class="stat-number" data-target="100">0</div>
                     <div class="stat-label">Happy Clients</div>
                 </div>
                 <div class="stat-item fade-in">
-                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                    <div class="stat-number">10+</div>
+                    <div class="stat-icon"><i class="fas fa-clock" aria-hidden="true"></i></div>
+                    <div class="stat-number" data-target="10">0</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat-item fade-in">
-                    <div class="stat-icon"><i class="fas fa-award"></i></div>
-                    <div class="stat-number">100%</div>
+                    <div class="stat-icon"><i class="fas fa-award" aria-hidden="true"></i></div>
+                    <div class="stat-number" data-target="100" data-suffix="%">0</div>
                     <div class="stat-label">Safety Record</div>
                 </div>
             </div>
@@ -882,10 +111,10 @@
         <!-- About Section -->
         <section id="about" class="section about">
             <div class="section-container">
-                <div class="section-header fade-in">
+                <header class="section-header fade-in">
                     <h2 class="section-title">About Khalsa Scaffolding</h2>
                     <p class="section-description">Delivering excellence in scaffolding solutions with unmatched professionalism and safety standards</p>
-                </div>
+                </header>
                 <div class="about-content">
                     <div class="about-text fade-in">
                         <h3>Who We Are</h3>
@@ -894,7 +123,9 @@
                         <p>Our commitment to excellence has earned us a reputation as one of the most trusted scaffolding contractors in the region.</p>
                     </div>
                     <div class="about-image fade-in">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Crect fill='%234a90c2' width='600' height='400'/%3E%3Cg fill='%23fff' opacity='0.1'%3E%3Crect x='50' y='50' width='100' height='200'/%3E%3Crect x='200' y='100' width='100' height='150'/%3E%3Crect x='350' y='75' width='100' height='175'/%3E%3C/g%3E%3Ctext x='300' y='220' text-anchor='middle' fill='%23fff' font-size='24' font-weight='bold'%3EScaffolding Excellence%3C/text%3E%3C/svg%3E" alt="Professional Scaffolding">
+                        <video id="scfvid"width="550" height=auto autoplay playsinline>
+  <source src="images/scfvid.mp4" type="video/mp4">
+</video>
                     </div>
                 </div>
             </div>
@@ -903,41 +134,41 @@
         <!-- Services Section -->
         <section id="services" class="section services">
             <div class="section-container">
-                <div class="section-header fade-in">
+                <header class="section-header fade-in">
                     <h2 class="section-title">Our Services</h2>
                     <p class="section-description">Comprehensive scaffolding solutions for all your construction and maintenance needs</p>
-                </div>
+                </header>
                 <div class="services-grid">
-                    <div class="service-card fade-in">
-                        <div class="service-icon"><i class="fas fa-building"></i></div>
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i class="fas fa-building" aria-hidden="true"></i></div>
                         <h3 class="service-title">U Shape Scaffolding</h3>
                         <p>Complete U-shaped scaffolding systems for comprehensive building coverage and maximum work efficiency.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon"><i class="fas fa-home"></i></div>
+                    </article>
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i class="fas fa-home" aria-hidden="true"></i></div>
                         <h3 class="service-title">L Shape Scaffolding</h3>
                         <p>Strategic L-shaped configurations perfect for corner work and specialized building layouts.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                    </article>
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
                         <h3 class="service-title">Cover Jobs</h3>
                         <p>Protective covering solutions that safeguard your property while work is being conducted.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon"><i class="fas fa-tools"></i></div>
+                    </article>
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
                         <h3 class="service-title">Front & Back Access</h3>
                         <p>Dual-access scaffolding systems providing front and back entry points for maximum convenience.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon"><i class="fas fa-bridge"></i></div>
+                    </article>
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i class="fas fa-bridge" aria-hidden="true"></i></div>
                         <h3 class="service-title">Bridge Systems</h3>
                         <p>Advanced bridging solutions connecting scaffold structures for enhanced accessibility.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <div class="service-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                    </article>
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i class="fas fa-expand-arrows-alt" aria-hidden="true"></i></div>
                         <h3 class="service-title">Four Side Coverage</h3>
                         <p>Complete 360-degree scaffolding coverage for comprehensive building maintenance and construction.</p>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -945,53 +176,64 @@
         <!-- Gallery Section -->
         <section id="gallery" class="section gallery">
             <div class="section-container">
-                <div class="section-header fade-in">
+                <header class="section-header fade-in">
                     <h2 class="section-title">Our Work Gallery</h2>
-                    <p class="section-description">Showcasing our expertise through completed projects and professional installations</p>
-                </div>
+                    <p class="section-description">Professional scaffolding installations across London</p>
+                </header>
                 <div class="gallery-grid">
-                    <div class="gallery-item fade-in">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23666' width='400' height='300'/%3E%3Cg fill='%23ccc'%3E%3Crect x='50' y='50' width='300' height='20'/%3E%3Crect x='50' y='90' width='300' height='20'/%3E%3Crect x='50' y='130' width='300' height='20'/%3E%3Crect x='50' y='170' width='300' height='20'/%3E%3C/g%3E%3Ctext x='200' y='250' text-anchor='middle' fill='%23fff' font-size='16'%3EResidential Project%3C/text%3E%3C/svg%3E" alt="Residential Scaffolding Project">
-                        <div class="gallery-overlay">
-                            <h4>Residential Scaffolding</h4>
-                            <p>Complete home renovation support with safety-first approach</p>
-                        </div>
+                    <figure class="gallery-item fade-in" data-category="residential">
+                        <img src="images/gallery2.png" alt="Residential Scaffolding Project" loading="lazy">
+                    </figure>
+                    <figure class="gallery-item fade-in large" data-category="commercial">
+                        <img src="images/gallery1.png" alt="Commercial Scaffolding Project" loading="lazy">
+                    </figure>
+                    <figure class="gallery-item fade-in" data-category="protective">
+                        <img src="images/gallery4.png" alt="Protective Cover Installation" loading="lazy">
+                    </figure>
+                    <figure class="gallery-item fade-in" data-category="bridge">
+                        <img src="images/gallery5.png" alt="Bridge Scaffolding System" loading="lazy">
+                    </figure>
+                    <figure class="gallery-item fade-in large" data-category="complete">
+                        <img src="images/gallery3.png" alt="Four Side Coverage System" loading="lazy">
+                    </figure>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TikTok Videos Section -->
+        <section id="tiktok" class="section tiktok-section">
+            <div class="section-container">
+                <header class="section-header fade-in">
+                    <h2 class="section-title">Follow Our Work on TikTok</h2>
+                    <p class="section-description">Watch our latest scaffolding projects and behind-the-scenes content</p>
+                    <a href="https://www.tiktok.com/@khalsa.scaffolding" target="_blank" rel="noopener noreferrer" class="tiktok-profile-link">
+                        <i class="fab fa-tiktok"></i> @khalsa.scaffolding
+                    </a>
+                </header>
+                
+                <!-- TikTok Feed Widget -->
+                <div class="tiktok-container fade-in">
+                    <!-- Option 1: TikTok Profile Embed (Shows profile with latest videos) -->
+                    <div class="tiktok-profile-embed">
+                        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@khalsa.scaffolding" data-unique-id="khalsa.scaffolding" data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
+                            <section>
+                                <a target="_blank" href="https://www.tiktok.com/@khalsa.scaffolding?refer=creator_embed">@khalsa.scaffolding</a>
+                            </section>
+                        </blockquote>
                     </div>
-                    <div class="gallery-item fade-in">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23555' width='400' height='300'/%3E%3Cg fill='%23bbb'%3E%3Crect x='30' y='30' width='340' height='25'/%3E%3Crect x='30' y='70' width='340' height='25'/%3E%3Crect x='30' y='110' width='340' height='25'/%3E%3Crect x='30' y='150' width='340' height='25'/%3E%3Crect x='30' y='190' width='340' height='25'/%3E%3C/g%3E%3Ctext x='200' y='250' text-anchor='middle' fill='%23fff' font-size='16'%3ECommercial Building%3C/text%3E%3C/svg%3E" alt="Commercial Scaffolding Project">
-                        <div class="gallery-overlay">
-                            <h4>Commercial Project</h4>
-                            <p>Large-scale commercial building scaffolding with advanced systems</p>
-                        </div>
+                    
+                    <!-- Option 2: Alternative display if embed doesn't work -->
+                    <div id="tiktok-feed" class="tiktok-feed-grid" style="display: none;">
+                        <!-- Videos will be loaded here dynamically -->
                     </div>
-                    <div class="gallery-item fade-in">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23777' width='400' height='300'/%3E%3Cg fill='%23ddd'%3E%3Crect x='40' y='40' width='320' height='18'/%3E%3Crect x='40' y='75' width='320' height='18'/%3E%3Crect x='40' y='110' width='320' height='18'/%3E%3Crect x='40' y='145' width='320' height='18'/%3E%3Crect x='40' y='180' width='320' height='18'/%3E%3C/g%3E%3Ctext x='200' y='250' text-anchor='middle' fill='%23fff' font-size='16'%3ECover Installation%3C/text%3E%3C/svg%3E" alt="Protective Cover Installation">
-                        <div class="gallery-overlay">
-                            <h4>Protective Covering</h4>
-                            <p>Weather protection and debris containment systems</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item fade-in">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23888' width='400' height='300'/%3E%3Cg fill='%23eee'%3E%3Crect x='60' y='60' width='280' height='15'/%3E%3Crect x='60' y='90' width='280' height='15'/%3E%3Crect x='60' y='120' width='280' height='15'/%3E%3Crect x='60' y='150' width='280' height='15'/%3E%3C/g%3E%3Ctext x='200' y='250' text-anchor='middle' fill='%23fff' font-size='16'%3EBridge System%3C/text%3E%3C/svg%3E" alt="Bridge Scaffolding System">
-                        <div class="gallery-overlay">
-                            <h4>Bridge Systems</h4>
-                            <p>Advanced bridging solutions for complex architectural requirements</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item fade-in">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23999' width='400' height='300'/%3E%3Cg fill='%23fff'%3E%3Crect x='70' y='70' width='260' height='12'/%3E%3Crect x='70' y='95' width='260' height='12'/%3E%3Crect x='70' y='120' width='260' height='12'/%3E%3Crect x='70' y='145' width='260' height='12'/%3E%3Crect x='70' y='170' width='260' height='12'/%3E%3C/g%3E%3Ctext x='200' y='250' text-anchor='middle' fill='%23fff' font-size='16'%3EFull Coverage%3C/text%3E%3C/svg%3E" alt="Four Side Coverage System">
-                        <div class="gallery-overlay">
-                            <h4>Complete Coverage</h4>
-                            <p>360-degree scaffolding for comprehensive building access</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item fade-in">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23aaa' width='400' height='300'/%3E%3Cg fill='%23333'%3E%3Crect x='80' y='80' width='240' height='10'/%3E%3Crect x='80' y='105' width='240' height='10'/%3E%3Crect x='80' y='130' width='240' height='10'/%3E%3Crect x='80' y='155' width='240' height='10'/%3E%3C/g%3E%3Ctext x='200' y='250' text-anchor='middle' fill='%23333' font-size='16'%3EGutter Level Access%3C/text%3E%3C/svg%3E" alt="Gutter Level Scaffolding">
-                        <div class="gallery-overlay">
-                            <h4>Gutter Level Work</h4>
-                            <p>Specialized access for roofing and gutter maintenance projects</p>
-                        </div>
-                    </div>
+                </div>
+                
+                <div class="tiktok-cta fade-in">
+                    <p>See more of our work and updates</p>
+                    <a href="https://www.tiktok.com/@khalsa.scaffolding" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <i class="fab fa-tiktok"></i> Follow Us on TikTok
+                    </a>
                 </div>
             </div>
         </section>
@@ -999,74 +241,64 @@
         <!-- Contact Section -->
         <section id="contact" class="section contact">
             <div class="section-container">
-                <div class="section-header fade-in">
+                <header class="section-header fade-in">
                     <h2 class="section-title">Contact Us</h2>
                     <p class="section-description">Get in touch for professional scaffolding services and free project quotes</p>
-                </div>
+                </header>
                 <div class="contact-content">
                     <div class="contact-info fade-in">
                         <h3>Get In Touch</h3>
-                        <div class="contact-detail">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>Phone:</strong><br>
-                                <a href="tel:07741252013">07741252013</a>
+                        <address>
+                            <div class="contact-detail">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Phone:</strong><br>
+                                    <a href="tel:07741252013">07741252013</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-detail">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email:</strong><br>
-                                <a href="mailto:khalsascaffolding@outlook.com">khalsascaffolding@outlook.com</a>
+                            <div class="contact-detail">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Email:</strong><br>
+                                    <a href="mailto:khalsascaffolding@outlook.com">khalsascaffolding@outlook.com</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-detail">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <strong>Working Hours:</strong><br>
-                                Monday - Saturday: 7:00 AM - 6:00 PM<br>
-                                Sunday: Emergency calls only
+                            <div class="contact-detail">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Working Hours:</strong><br>
+                                    Monday - Saturday: 7:00 AM - 6:00 PM<br>
+                                    Sunday: Emergency calls only
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Service Area:</strong><br>
-                                Greater London & Surrounding Areas
+                            <div class="contact-detail">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Service Area:</strong><br>
+                                    Greater London & Surrounding Areas
+                                </div>
                             </div>
-                        </div>
-                        <h3 style="margin-top: 2rem;">Follow Us</h3>
+                        </address>
+                        <h3>Follow Us</h3>
                         <div class="social-links">
-                            <a href="https://www.tiktok.com/@khalsa.scaffolding" class="social-link" target="_blank">
-                                <i class="fab fa-tiktok"></i>
+                            <a href="https://www.tiktok.com/@khalsa.scaffolding" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on TikTok">
+                                <i class="fab fa-tiktok" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
                     <div id="quote" class="quote-form fade-in">
-                        <h3>Request Free Quote</h3>
-                        <form id="quote-form">
-                            <div class="form-group">
-                                <label for="firstname">First Name *</label>
-                                <input type="text" id="firstname" name="firstname" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname">Last Name *</label>
-                                <input type="text" id="lastname" name="lastname" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number *</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="project">Project Details</label>
-                                <textarea id="project" name="project" placeholder="Please describe your scaffolding requirements..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Request Free Quote</button>
-                        </form>
+                        <h3>Free Quote</h3>
+                        <p class="quote-intro">To request a free quote for your scaffolding project, please contact us directly:</p>
+                        <div class="quote-contact-box">
+                            <p class="quote-phone">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                Call us: <a href="tel:07741252013">07741252013</a>
+                            </p>
+                            <p class="quote-email">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                Email: <a href="mailto:khalsascaffolding@outlook.com">khalsascaffolding@outlook.com</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1079,31 +311,35 @@
                     <h3>Khalsa Scaffolding Ltd</h3>
                     <p>Professional scaffolding services with a commitment to safety, quality, and customer satisfaction. Trusted by homeowners and contractors across the region.</p>
                     <div class="social-links">
-                        <a href="https://www.tiktok.com/@khalsa.scaffolding" class="social-link" target="_blank">
-                            <i class="fab fa-tiktok"></i>
+                        <a href="https://www.tiktok.com/@khalsa.scaffolding" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on TikTok">
+                            <i class="fab fa-tiktok" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3>Our Services</h3>
-                    <p><a href="#services">U Shape Scaffolding</a></p>
-                    <p><a href="#services">L Shape Scaffolding</a></p>
-                    <p><a href="#services">Cover Jobs</a></p>
-                    <p><a href="#services">Bridge Systems</a></p>
-                    <p><a href="#services">Four Side Coverage</a></p>
-                    <p><a href="#services">Gutter Level Access</a></p>
+                    <ul class="footer-links">
+                        <li><a href="#services">U Shape Scaffolding</a></li>
+                        <li><a href="#services">L Shape Scaffolding</a></li>
+                        <li><a href="#services">Cover Jobs</a></li>
+                        <li><a href="#services">Bridge Systems</a></li>
+                        <li><a href="#services">Four Side Coverage</a></li>
+                        <li><a href="#services">Gutter Level Access</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Information</h3>
-                    <p><i class="fas fa-phone"></i> 07741252013</p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:khalsascaffolding@outlook.com">khalsascaffolding@outlook.com</a></p>
-                    <p><i class="fas fa-clock"></i> Mon-Sat: 7AM-6PM</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Greater London Area</p>
+                    <address class="footer-contact">
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> 07741252013</p>
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:khalsascaffolding@outlook.com">khalsascaffolding@outlook.com</a></p>
+                        <p><i class="fas fa-clock" aria-hidden="true"></i> Mon-Sat: 7AM-6PM</p>
+                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Greater London Area</p>
+                    </address>
                 </div>
                 <div class="footer-section">
                     <h3>Our Fleet</h3>
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150'%3E%3Crect fill='%23333' width='300' height='150'/%3E%3Cg fill='%23fff'%3E%3Crect x='20' y='60' width='80' height='40' rx='5'/%3E%3Crect x='120' y='60' width='80' height='40' rx='5'/%3E%3Ccircle cx='40' cy='110' r='8'/%3E%3Ccircle cx='180' cy='110' r='8'/%3E%3Ccircle cx='140' cy='110' r='8'/%3E%3Ccircle cx='260' cy='110' r='8'/%3E%3C/g%3E%3Ctext x='150' y='40' text-anchor='middle' fill='%23ff8c00' font-size='14' font-weight='bold'%3EKHALSA SCAFFOLDING%3C/text%3E%3C/svg%3E" alt="Khalsa Scaffolding Fleet" style="width: 100%; border-radius: 8px;">
-                    <p style="margin-top: 1rem;">Professional fleet ready to serve your scaffolding needs across the region.</p>
+                    <img src="images/fleet.jpg" alt="Khalsa Scaffolding Fleet" class="footer-fleet-img" loading="lazy">
+                    <p class="footer-fleet-text">Professional fleet ready to serve your scaffolding needs across the region.</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1113,181 +349,12 @@
         </footer>
 
         <!-- Scroll to Top Button -->
-        <button class="scroll-top" id="scroll-top">
-            <i class="fas fa-chevron-up"></i>
+        <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+            <i class="fas fa-chevron-up" aria-hidden="true"></i>
         </button>
     </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
-        });
-
-        // Scroll to top button
-        const scrollTopBtn = document.getElementById('scroll-top');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-        });
-
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Form submission
-        document.getElementById('quote-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const firstName = formData.get('firstname');
-            const lastName = formData.get('lastname');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const project = formData.get('project');
-            
-            const subject = encodeURIComponent('Free Quote Request - Khalsa Scaffolding');
-            const body = encodeURIComponent(`Dear Khalsa Scaffolding Team,
-
-I would like to request a free quote for scaffolding services.
-
-Contact Details:
-Name: ${firstName} ${lastName}
-Email: ${email}
-Phone: ${phone}
-
-Project Details:
-${project || 'No specific details provided'}
-
-Please contact me at your earliest convenience to discuss my requirements.
-
-Best regards,
-${firstName} ${lastName}`);
-            
-            const mailtoLink = `mailto:khalsascaffolding@outlook.com?subject=${subject}&body=${body}`;
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Thank you for your quote request! Your email client will open with a pre-filled message. Please send it to complete your request.');
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Navbar active link highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Loading screen auto-hide
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.querySelector('.loading-screen').style.display = 'none';
-            }, 3500);
-        });
-
-        // Counter animation for stats
-        function animateCounter(element, target) {
-            let current = 0;
-            const increment = target / 100;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current) + (target === 100 ? '%' : '+');
-            }, 20);
-        }
-
-        // Animate counters when they come into view
-        const statNumbers = document.querySelectorAll('.stat-number');
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                    entry.target.classList.add('animated');
-                    const text = entry.target.textContent;
-                    const number = parseInt(text.replace(/[^0-9]/g, ''));
-                    animateCounter(entry.target, number);
-                }
-            });
-        });
-
-        statNumbers.forEach(stat => {
-            statsObserver.observe(stat);
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="index.js" defer></script>
 </body>
 </html>
