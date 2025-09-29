@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Builder - Varinder Singh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 20px;
+            height: calc(100vh - 40px);
+        }
+
+        .editor-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .preview-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .editor-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2E75B6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2E75B6;
+            box-shadow: 0 0 0 3px rgba(46, 117, 182, 0.1);
+        }
+
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #2E75B6, #1a5490);
+            color: white;
+            padding: 15px;
+            margin: 20px -20px 15px -20px;
+            font-size: 16px;
+            font-weight: bold;
+            position: sticky;
+            top: -20px;
+            z-index: 10;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2E75B6, #1a5490);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(46, 117, 182, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-download {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 20px;
+            width: 100%;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            font-size: 16px;
+            padding: 15px;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .dynamic-list {
+            margin-top: 10px;
+        }
+
+        .list-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .remove-item {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* CV Preview Styles */
+        .cv-preview {
+            font-family: 'Calibri', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.3;
+            color: #000;
+        }
+
+        .cv-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #2E75B6;
+            padding-bottom: 15px;
+        }
+
+        .cv-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2E75B6;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .cv-contact {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .cv-section {
+            margin-bottom: 25px;
+        }
+
+        .cv-section-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #2E75B6;
+            text-transform: uppercase;
+            border-bottom: 2px solid #2E75B6;
+            margin-bottom: 12px;
+            padding-bottom: 3px;
+        }
+
+        .cv-job-title {
+            font-weight: bold;
+            font-size: 13px;
+            color: #000;
+            margin-bottom: 3px;
+        }
+
+        .cv-company-date {
+            font-style: italic;
+            color: #666;
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .cv-description ul {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+        }
+
+        .cv-description li {
+            margin-bottom: 4px;
+            font-size: 11px;
+        }
+
+        .cv-skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .cv-skill-category h4 {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .cv-skill-list {
+            font-size: 11px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .auto-save {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .auto-save.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                height: auto;
+            }
+            
+            .editor-panel {
+                height: auto;
+            }
+        }
+
+        @media print {
+            .container {
+                display: block;
+            }
+            
+            .editor-panel {
+                display: none;
+            }
+            
+            .preview-panel {
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .btn-download {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auto-save" id="autoSave">Changes Saved ✓</div>
+    
+    <div class="container">
+        <div class="editor-panel">
+            <h2 class="editor-title">CV Editor</h2>
+            
+            <div class="section-header">Personal Information</div>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" value="VARINDER SINGH">
+            </div>
+            <div class="form-group">
+                <label>Contact Information</label>
+                <textarea id="contactInfo">Greenford, Middlesex UB6 9EL | +447438659505 | vxrindersingh@gmail.com | linkedin.com/in/varinder-singh-uk13</textarea>
+            </div>
+            
+            <div class="section-header">Professional Summary</div>
+            <div class="form-group">
+                <label>Summary</label>
+                <textarea id="summary">Enthusiastic Computer Science MSci student with hands-on technical experience and proven ability to support IT operations. Expertise in Windows environments, hardware troubleshooting, and technical documentation. Strong attention to detail with excellent organizational skills. Eager to contribute to technical projects while gaining hands-on experience in enterprise IT environments.</textarea>
+            </div>
+            
+            <div class="section-header">Experience</div>
+            <div id="experienceList" class="dynamic-list"></div>
+            <button class="btn btn-secondary" onclick="addExperience()">+ Add Experience</button>
+            
+            <div class="section-header">Education</div>
+            <div id="educationList" class="dynamic-list"></div>
+            <button class="btn btn-secondary" onclick="addEducation()">+ Add Education</button>
+            
+            <div class="section-header">Skills</div>
+            <div id="skillsList" class="dynamic-list"></div>
+            <button class="btn btn-secondary" onclick="addSkillCategory()">+ Add Skill Category</button>
+            
+            <div class="section-header">Additional Sections</div>
+            <div id="customSections" class="dynamic-list"></div>
+            <button class="btn btn-secondary" onclick="addCustomSection()">+ Add Custom Section</button>
+            
+            <div style="margin-top: 30px; text-align: center;">
+                <button class="btn btn-primary" onclick="saveCV()" style="margin-right: 10px;">💾 Save CV</button>
+                <button class="btn btn-primary" onclick="loadCV()">📁 Load Saved CV</button>
+            </div>
+        </div>
+        
+        <div class="preview-panel">
+            <button class="btn btn-download" onclick="downloadCV()">📄 Download CV as PDF</button>
+            <div id="cvPreview" class="cv-preview"></div>
+        </div>
+    </div>
+
+    <script>
+        let cvData = {
+            fullName: 'VARINDER SINGH',
+            contactInfo: 'Greenford, Middlesex UB6 9EL | +447438659505 | vxrindersingh@gmail.com | linkedin.com/in/varinder-singh-uk13',
+            summary: 'Enthusiastic Computer Science MSci student with hands-on technical experience and proven ability to support IT operations. Expertise in Windows environments, hardware troubleshooting, and technical documentation. Strong attention to detail with excellent organizational skills. Eager to contribute to technical projects while gaining hands-on experience in enterprise IT environments.',
+            experience: [
+                {
+                    title: 'INFORMATION TECHNOLOGY SUPPORT ENGINEER',
+                    company: 'Place2Be | United Kingdom',
+                    dates: 'September 2025 - Present',
+                    details: 'Part-time (Previously Internship: July 2025 - September 2025)',
+                    description: '• Successfully resolved IT incidents of varying complexity levels, ensuring minimal disruption to operations and maximizing staff productivity\n• Played an important role in setting up equipment for new staff, ensuring smooth integration into the organisation\'s IT infrastructure\n• Provided comprehensive onsite Audio-Visual support, facilitating smooth and efficient communication during meetings\n• Actively contributed to strategic projects, including the rollout of Windows 11 to approximately 100 staff members, ensuring a smooth transition and minimal downtime\n• Demonstrated strong problem-solving skills and attention to detail in troubleshooting and resolving technical issues\n• Maintained a proactive approach to staying updated with emerging technologies and industry best practices, enhancing the efficiency and effectiveness of IT operations at Place2Be'
+                },
+                {
+                    title: 'WEB DEVELOPER - Technical Project Management',
+                    company: 'Khalsa Scaffolding | London',
+                    dates: 'August 2024 - September 2024',
+                    details: '',
+                    description: '• Technical Configuration: Set up and configured web systems, demonstrating ability to prepare technical environments\n• Problem-Solving: Troubleshot issues and created comprehensive technical documentation'
+                },
+                {
+                    title: 'TECHNOLOGY INTERN - Remote Technical Support',
+                    company: 'Spring Pod | Virtual',
+                    dates: 'October 2022 - December 2022',
+                    details: '',
+                    description: '• Remote Coordination: Managed tasks in virtual environment - valuable for coordinating shipments/collections\n• Reliability: Met all deadlines in fast-paced environment demonstrating strong work ethic'
+                }
+            ],
+            education: [
+                {
+                    degree: 'MSci Computer Science with Cyber Security',
+                    school: 'City University of London',
+                    dates: 'In Progress',
+                    details: ''
+                },
+                {
+                    degree: 'A-Levels (2022-2024)',
+                    school: 'Dormers Wells High School',
+                    dates: '',
+                    details: 'Computer Science: B | Mathematics: B | Physics: C | Strong foundation in hardware/software principles'
+                }
+            ],
+            skills: [
+                {
+                    category: 'Operating Systems & Software',
+                    items: '• Windows OS (10/11) - Advanced user\n• Microsoft Office Suite (Word, Excel, Outlook)\n• Microsoft Intune\n• Hardware troubleshooting & configuration'
+                },
+                {
+                    category: 'IT Support & Coordination',
+                    items: '• Problem-solving & troubleshooting\n• Audio-Visual support\n• Equipment setup & configuration\n• Incident resolution'
+                }
+            ],
+            customSections: [
+                {
+                    title: 'Key Attributes',
+                    content: '• Reliability: Consistent track record meeting deadlines\n• Team Player: Effective collaboration in 5-12 member teams\n• Strong Work Ethic: Balancing MSci with work commitments\n• Office Availability: Available 3-4 days/week at St John Street\n• Quick Learner: Adapt rapidly to new technologies\n• Languages: English (Native), Punjabi (Advanced)\n• Interest: Excited about hands-on experience in enterprise IT environments and networking with Cyber Security, Data, and Infrastructure teams'
+                }
+            ]
+        };
+
+        function showAutoSave() {
+            const autoSave = document.getElementById('autoSave');
+            autoSave.classList.add('show');
+            setTimeout(() => {
+                autoSave.classList.remove('show');
+            }, 2000);
+        }
+
+        function addExperience() {
+            const newExp = {
+                title: 'Job Title',
+                company: 'Company Name | Location',
+                dates: 'Start Date - End Date',
+                details: '',
+                description: '• Add your responsibilities and achievements here'
+            };
+            cvData.experience.push(newExp);
+            renderExperience();
+            updatePreview();
+            showAutoSave();
+        }
+
+        function addEducation() {
+            const newEdu = {
+                degree: 'Degree/Certificate',
+                school: 'Institution Name',
+                dates: 'Year',
+                details: 'Additional details'
+            };
+            cvData.education.push(newEdu);
+            renderEducation();
+            updatePreview();
+            showAutoSave();
+        }
+
+        function addSkillCategory() {
+            const newSkill = {
+                category: 'Skill Category',
+                items: '• Skill 1\n• Skill 2\n• Skill 3'
+            };
+            cvData.skills.push(newSkill);
+            renderSkills();
+            updatePreview();
+            showAutoSave();
+        }
+
+        function addCustomSection() {
+            const newSection = {
+                title: 'Section Title',
+                content: 'Add your content here'
+            };
+            cvData.customSections.push(newSection);
+            renderCustomSections();
+            updatePreview();
+            showAutoSave();
+        }
+
+        function removeItem(type, index) {
+            cvData[type].splice(index, 1);
+            if (type === 'experience') renderExperience();
+            else if (type === 'education') renderEducation();
+            else if (type === 'skills') renderSkills();
+            else if (type === 'customSections') renderCustomSections();
+            updatePreview();
+            showAutoSave();
+        }
+
+        function renderExperience() {
+            const container = document.getElementById('experienceList');
+            container.innerHTML = '';
+            
+            cvData.experience.forEach((exp, index) => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <button class="remove-item" onclick="removeItem('experience', ${index})">×</button>
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" value="${exp.title}" onchange="cvData.experience[${index}].title = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Company & Location</label>
+                        <input type="text" value="${exp.company}" onchange="cvData.experience[${index}].company = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Dates</label>
+                        <input type="text" value="${exp.dates}" onchange="cvData.experience[${index}].dates = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Details (optional)</label>
+                        <input type="text" value="${exp.details}" onchange="cvData.experience[${index}].details = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea onchange="cvData.experience[${index}].description = this.value; updatePreview(); showAutoSave();" style="height: 120px;">${exp.description}</textarea>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderEducation() {
+            const container = document.getElementById('educationList');
+            container.innerHTML = '';
+            
+            cvData.education.forEach((edu, index) => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <button class="remove-item" onclick="removeItem('education', ${index})">×</button>
+                    <div class="form-group">
+                        <label>Degree/Certificate</label>
+                        <input type="text" value="${edu.degree}" onchange="cvData.education[${index}].degree = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Institution</label>
+                        <input type="text" value="${edu.school}" onchange="cvData.education[${index}].school = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Dates</label>
+                        <input type="text" value="${edu.dates}" onchange="cvData.education[${index}].dates = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Details</label>
+                        <input type="text" value="${edu.details}" onchange="cvData.education[${index}].details = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skillsList');
+            container.innerHTML = '';
+            
+            cvData.skills.forEach((skill, index) => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <button class="remove-item" onclick="removeItem('skills', ${index})">×</button>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" value="${skill.category}" onchange="cvData.skills[${index}].category = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Skills (use bullet points)</label>
+                        <textarea onchange="cvData.skills[${index}].items = this.value; updatePreview(); showAutoSave();">${skill.items}</textarea>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderCustomSections() {
+            const container = document.getElementById('customSections');
+            container.innerHTML = '';
+            
+            cvData.customSections.forEach((section, index) => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <button class="remove-item" onclick="removeItem('customSections', ${index})">×</button>
+                    <div class="form-group">
+                        <label>Section Title</label>
+                        <input type="text" value="${section.title}" onchange="cvData.customSections[${index}].title = this.value; updatePreview(); showAutoSave();">
+                    </div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea onchange="cvData.customSections[${index}].content = this.value; updatePreview(); showAutoSave();" style="height: 120px;">${section.content}</textarea>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updatePreview() {
+            const preview = document.getElementById('cvPreview');
+            
+            let html = `
+                <div class="cv-header">
+                    <div class="cv-name">${cvData.fullName}</div>
+                    <div class="cv-contact">${cvData.contactInfo}</div>
+                </div>
+                
+                <div class="cv-section">
+                    <div class="cv-section-title">Professional Summary</div>
+                    <p>${cvData.summary}</p>
+                </div>
+            `;
+
+            // Skills section
+            if (cvData.skills.length > 0) {
+                html += `<div class="cv-section">
+                    <div class="cv-section-title">Technical Skills</div>
+                    <div class="cv-skills-grid">`;
+                
+                cvData.skills.forEach(skill => {
+                    html += `
+                        <div class="cv-skill-category">
+                            <h4>${skill.category}</h4>
+                            <div class="cv-skill-list">${skill.items.replace(/\n/g, '<br>')}</div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div></div>`;
+            }
+
+            // Experience section
+            if (cvData.experience.length > 0) {
+                html += `<div class="cv-section">
+                    <div class="cv-section-title">Relevant Experience</div>`;
+                
+                cvData.experience.forEach(exp => {
+                    html += `
+                        <div class="cv-job-title">${exp.title}</div>
+                        <div class="cv-company-date">${exp.company} | ${exp.dates}</div>
+                        ${exp.details ? `<div class="cv-company-date" style="margin-bottom: 8px;"><em>${exp.details}</em></div>` : ''}
+                        <div class="cv-description">
+                            <ul>
+                                ${exp.description.split('\n').filter(line => line.trim()).map(line => 
+                                    `<li>${line.replace(/^•\s*/, '')}</li>`
+                                ).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            }
+
+            // Education section
+            if (cvData.education.length > 0) {
+                html += `<div class="cv-section">
+                    <div class="cv-section-title">Education</div>`;
+                
+                cvData.education.forEach(edu => {
+                    html += `
+                        <div style="margin-bottom: 15px;">
+                            <div class="cv-job-title">${edu.degree}</div>
+                            <div class="cv-company-date">${edu.school}${edu.dates ? ` | ${edu.dates}` : ''}</div>
+                            ${edu.details ? `<div style="font-size: 11px; margin-top: 5px;">${edu.details}</div>` : ''}
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            }
+
+            // Custom sections
+            cvData.customSections.forEach(section => {
+                html += `
+                    <div class="cv-section">
+                        <div class="cv-section-title">${section.title}</div>
+                        <div style="font-size: 11px;">${section.content.replace(/\n/g, '<br>')}</div>
+                    </div>
+                `;
+            });
+
+            preview.innerHTML = html;
+        }
+
+        function saveCV() {
+            const dataStr = JSON.stringify(cvData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `${cvData.fullName.replace(/\s+/g, '_')}_CV_Data.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            showAutoSave();
+        }
+
+        function loadCV() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            cvData = JSON.parse(e.target.result);
+                            document.getElementById('fullName').value = cvData.fullName;
+                            document.getElementById('contactInfo').value = cvData.contactInfo;
+                            document.getElementById('summary').value = cvData.summary;
+                            
+                            renderExperience();
+                            renderEducation();
+                            renderSkills();
+                            renderCustomSections();
+                            updatePreview();
+                            showAutoSave();
+                        } catch (error) {
+                            alert('Error loading CV data. Please make sure you selected a valid CV data file.');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+
+        function downloadCV() {
+            window.print();
+        }
+
+        // Event listeners for main fields
+        document.getElementById('fullName').addEventListener('input', function() {
+            cvData.fullName = this.value;
+            updatePreview();
+            showAutoSave();
+        });
+
+        document.getElementById('contactInfo').addEventListener('input', function() {
+            cvData.contactInfo = this.value;
+            updatePreview();
+            showAutoSave();
+        });
+
+        document.getElementById('summary').addEventListener('input', function() {
+            cvData.summary = this.value;
+            updatePreview();
+            showAutoSave();
+        });
+
+        // Initialize
+        renderExperience();
+        renderEducation();
+        renderSkills();
+        renderCustomSections();
+        updatePreview();
+
+        // Auto-save to localStorage every 10 seconds
+        setInterval(() => {
+            localStorage.setItem('cvData', JSON.stringify(cvData));
+        }, 10000);
+
+        // Load from localStorage on page load
+        window.addEventListener('load', () => {
+            const savedData = localStorage.getItem('cvData');
+            if (savedData) {
+                try {
+                    cvData = JSON.parse(savedData);
+                    document.getElementById('fullName').value = cvData.fullName;
+                    document.getElementById('contactInfo').value = cvData.contactInfo;
+                    document.getElementById('summary').value = cvData.summary;
+                    
+                    renderExperience();
+                    renderEducation();
+                    renderSkills();
+                    renderCustomSections();
+                    updatePreview();
+                } catch (e) {
+                    console.log('Could not load saved data');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
