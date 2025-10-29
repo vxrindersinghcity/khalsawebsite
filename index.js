@@ -7,34 +7,59 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // ========================================
+    // Video Auto-play and Loop
+    // ========================================
+    const video = document.getElementById('scfvid');
+    
+    if (video) {
+        // Ensure video plays on load
+        video.play().catch(err => {
+            console.log('Video autoplay prevented:', err);
+            // If autoplay fails, try to play on user interaction
+            document.addEventListener('click', function playOnce() {
+                video.play();
+                document.removeEventListener('click', playOnce);
+            }, { once: true });
+        });
+        
+        // Loop video when it ends
+        video.addEventListener('ended', () => {
+            video.currentTime = 0;
+            video.play();
+        });
+    }
+    
+    // ========================================
     // Mobile Navigation
     // ========================================
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
     
-    mobileMenuBtn.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        const isActive = navMenu.classList.contains('active');
-        const icon = this.querySelector('i');
-        
-        // Toggle icon
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-        
-        // Update ARIA attributes
-        this.setAttribute('aria-expanded', isActive);
-    });
-    
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            const isActive = navMenu.classList.contains('active');
+            const icon = this.querySelector('i');
+            
+            // Toggle icon
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+            
+            // Update ARIA attributes
+            this.setAttribute('aria-expanded', isActive);
         });
-    });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
     
     // ========================================
     // Smooth Scrolling
@@ -63,22 +88,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     const scrollTopBtn = document.getElementById('scrollTop');
     
-    // Show/hide scroll to top button
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
-    });
-    
-    // Scroll to top functionality
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (scrollTopBtn) {
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
         });
-    });
+        
+        // Scroll to top functionality
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
     
     // ========================================
     // Active Navigation Link
@@ -105,7 +132,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    window.addEventListener('scroll', updateActiveLink);
+    // Throttle scroll events for better performance
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(updateActiveLink, 100);
+    });
     
     // ========================================
     // Fade In Animation on Scroll
@@ -154,18 +188,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Create observer for stats section
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !statsAnimated) {
-                statsAnimated = true;
-                statNumbers.forEach(stat => {
-                    animateCounter(stat);
-                });
-            }
-        });
-    }, { threshold: 0.5 });
-    
     if (statsSection) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) {
+                    statsAnimated = true;
+                    statNumbers.forEach(stat => {
+                        animateCounter(stat);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        
         statsObserver.observe(statsSection);
     }
     
@@ -216,38 +250,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ========================================
-// Performance Optimization
-// ========================================
-// Throttle scroll events
-let scrollTimeout;
-function throttleScroll(callback, delay) {
-    if (scrollTimeout) return;
-    
-    scrollTimeout = setTimeout(() => {
-        callback();
-        scrollTimeout = null;
-    }, delay);
-}
-
-// Apply throttling to scroll events
-window.addEventListener('scroll', () => {
-    throttleScroll(() => {
-        // Update active nav link
-        updateActiveLink();
-    }, 100);
-});
-
-// ========================================
 // Error Handling
 // ========================================
 window.addEventListener('error', (e) => {
     console.error('An error occurred:', e.error);
     // You could send this to an error logging service
 });
-
-  const video = document.getElementById('scfvid');
-  video.addEventListener('ended', () => {
-    video.currentTime = 0;
-    video.play();
-    video.play();
-  });

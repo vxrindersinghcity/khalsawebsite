@@ -9,14 +9,14 @@
     --dark-blue: #1e3a5f;
     --light-blue: #4a90c2;
     --dark-gray: #2c3e50;
-    --light-gray: #ecf0f1;
+    --light-gray: #f8f9fa;
     --white: #ffffff;
     --text-dark: #2c3e50;
-    --text-light: #7f8c8d;
-    --shadow: 0 10px 30px rgba(0,0,0,0.1);
-    --shadow-hover: 0 15px 40px rgba(0,0,0,0.15);
+    --text-light: #6c757d;
+    --shadow: 0 4px 15px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 25px rgba(0,0,0,0.12);
     --transition: all 0.3s ease;
-    --border-radius: 15px;
+    --border-radius: 12px;
 }
 
 /* ========================================
@@ -34,7 +34,7 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-dark);
     background: var(--white);
     overflow-x: hidden;
@@ -92,7 +92,7 @@ a {
 .header {
     background: linear-gradient(135deg, #000000, #1a1a1a);
     color: var(--white);
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
@@ -169,7 +169,7 @@ a {
    ======================================== */
 .navbar {
     background: var(--white);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -196,10 +196,11 @@ a {
 
 .nav-link {
     display: block;
-    padding: 1.2rem 1.5rem;
+    padding: 1rem 1.5rem;
     color: var(--text-dark);
     font-weight: 500;
     position: relative;
+    font-size: 0.95rem;
 }
 
 .nav-link:hover {
@@ -239,7 +240,7 @@ a {
     background: linear-gradient(rgba(30, 58, 95, 0.9), rgba(44, 62, 80, 0.9)), 
                 url('../images/hero-bg.jpg') center/cover;
     color: var(--white);
-    padding: 8rem 0;
+    padding: 10rem 0;
     text-align: center;
     position: relative;
 }
@@ -261,10 +262,11 @@ a {
 .hero-subtitle {
     font-size: 1.3rem;
     margin-bottom: 3rem;
-    opacity: 0.9;
-    max-width: 600px;
+    opacity: 0.95;
+    max-width: 650px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
 }
 
 .cta-buttons {
@@ -279,7 +281,7 @@ a {
    ======================================== */
 .btn {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     border-radius: 50px;
     font-weight: 600;
     transition: var(--transition);
@@ -296,7 +298,7 @@ a {
 
 .btn-primary:hover {
     background: var(--secondary-orange);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
 }
 
@@ -316,7 +318,7 @@ a {
    ======================================== */
 .stats {
     background: var(--light-gray);
-    padding: 4rem 0;
+    padding: 5rem 0;
 }
 
 .stats-container {
@@ -330,15 +332,16 @@ a {
 
 .stat-item {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     background: var(--white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-item:hover {
     transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
 
 .stat-icon {
@@ -348,7 +351,7 @@ a {
 }
 
 .stat-number {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
     color: var(--dark-blue);
     margin-bottom: 0.5rem;
@@ -357,6 +360,7 @@ a {
 .stat-label {
     color: var(--text-light);
     font-weight: 500;
+    font-size: 1rem;
 }
 
 /* ========================================
@@ -364,6 +368,10 @@ a {
    ======================================== */
 .section {
     padding: 6rem 0;
+}
+
+.section:nth-child(even) {
+    background: var(--light-gray);
 }
 
 .section-container {
@@ -398,19 +406,16 @@ a {
 }
 
 .section-description {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-light);
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
+    line-height: 1.7;
 }
 
 /* ========================================
    About Section
    ======================================== */
-.about {
-    background: var(--white);
-}
-
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -418,65 +423,52 @@ a {
     align-items: center;
 }
 
-.about-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
 .about-text h3 {
+    font-size: 1.8rem;
     color: var(--dark-blue);
-    font-size: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
 .about-text p {
     margin-bottom: 1.5rem;
-    color: var(--text-light);
+    color: var(--text-dark);
+    line-height: 1.8;
 }
 
-.about-image {
+.about-video {
     position: relative;
     border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-hover);
 }
 
-.about-image img {
+.about-video-element {
     width: 100%;
     height: auto;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.about-image:hover img {
-    transform: scale(1.05);
+    display: block;
+    border-radius: var(--border-radius);
 }
 
 /* ========================================
    Services Section
    ======================================== */
-.services {
-    background: var(--light-gray);
-}
-
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
 }
 
 .service-card {
     background: var(--white);
-    padding: 2.5rem;
+    padding: 2.5rem 2rem;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
     text-align: center;
-    border-top: 4px solid var(--primary-orange);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
 }
 
@@ -486,225 +478,98 @@ a {
     margin-bottom: 1.5rem;
 }
 
-.service-title {
-    font-size: 1.3rem;
+.service-card h3 {
+    font-size: 1.5rem;
     color: var(--dark-blue);
     margin-bottom: 1rem;
-    font-weight: 600;
-}
-/* ========================================
-   Gallery Section - Redesigned
-   ======================================== */
-.gallery {
-    background: var(--white);
-    padding: 2rem;
 }
 
+.service-card p {
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ========================================
+   Gallery Section
+   ======================================== */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
-/* Gallery Item */
 .gallery-item {
     position: relative;
-    border-radius: 12px;
     overflow: hidden;
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    aspect-ratio: 4 / 3; /* Keeps image containers uniform */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .gallery-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: scale(1.03);
 }
 
 .gallery-item img {
     width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensures full image is visible */
-    transition: transform 0.4s ease, filter 0.3s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.03);
-    filter: brightness(0.95);
-}
-
-/* Gradient overlay on hover */
-.gallery-item::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom right, rgba(255, 140, 0, 0.1), rgba(255, 140, 0, 0.2));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.gallery-item:hover::before {
-    opacity: 1;
-}
-
-/* Center Icon on Hover */
-.gallery-item::after {
-    content: '⚒';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    font-size: 24px;
-    color: white;
-    background-color: rgba(255, 140, 0, 0.9);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 300px;
+    object-fit: cover;
+    display: block;
     transition: transform 0.3s ease;
 }
 
-.gallery-item:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+.gallery-item:hover img {
+    transform: scale(1.1);
 }
 
 /* ========================================
    TikTok Section
    ======================================== */
-.tiktok-section {
-    background: var(--light-gray);
-}
-
-.tiktok-profile-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
-    background: #000;
-    color: var(--white);
-    border-radius: 50px;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.tiktok-profile-link:hover {
-    background: #333;
-    transform: translateY(-2px);
-}
-
-.tiktok-profile-link i {
-    font-size: 1.2rem;
-}
-
 .tiktok-container {
-    margin: 3rem 0;
+    max-width: 800px;
+    margin: 0 auto 3rem;
 }
 
 .tiktok-profile-embed {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 600px;
     background: var(--white);
     border-radius: var(--border-radius);
     padding: 2rem;
     box-shadow: var(--shadow);
-}
-
-/* Force TikTok embed to display as grid */
-.tiktok-profile-embed iframe {
-    max-width: 100% !important;
-    width: 100% !important;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tiktok-feed-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-    gap: 2rem !important;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
-.tiktok-video-card {
+.tiktok-video {
     background: var(--white);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
+    min-height: 500px;
     transition: transform 0.3s ease;
-    cursor: pointer;
-    display: block;
 }
 
-.tiktok-video-card:hover {
+.tiktok-video:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-.tiktok-video-card img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-}
-
-.tiktok-video-info {
-    padding: 1.5rem;
-}
-
-.tiktok-video-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.tiktok-video-stats {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.9rem;
-    color: var(--text-light);
-}
-
-.tiktok-video-stats i {
-    margin-right: 0.3rem;
-}
-
-.tiktok-embed {
-    width: 100%;
-    max-width: 100% !important;
-    display: grid !important;
 }
 
 .tiktok-cta {
     text-align: center;
-    padding-top: 2rem;
+    margin-top: 3rem;
 }
 
 .tiktok-cta p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
     margin-bottom: 1.5rem;
-    color: var(--text-dark);
 }
 
 .tiktok-cta .btn i {
@@ -714,64 +579,67 @@ a {
 /* ========================================
    Contact Section
    ======================================== */
-.contact {
-    background: var(--light-gray);
-}
-
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
 }
 
-.contact-info {
-    background: var(--white);
-    padding: 3rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-}
-
 .contact-info h3 {
+    font-size: 1.8rem;
     color: var(--dark-blue);
-    font-size: 1.5rem;
     margin-bottom: 2rem;
 }
 
 .contact-detail {
     display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: var(--light-gray);
-    border-radius: 10px;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.contact-detail:hover {
+    transform: translateX(5px);
 }
 
 .contact-detail i {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--primary-orange);
-    margin-right: 1rem;
-    width: 20px;
+    margin-top: 0.25rem;
+}
+
+.contact-detail strong {
+    display: block;
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .contact-detail a {
-    color: var(--text-dark);
-}
-
-.contact-detail a:hover {
     color: var(--primary-orange);
 }
 
+.contact-detail a:hover {
+    text-decoration: underline;
+}
+
+/* Quote Form Section */
 .quote-form {
     background: var(--white);
     padding: 3rem;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-hover);
 }
 
 .quote-form h3 {
+    font-size: 1.8rem;
     color: var(--dark-blue);
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-align: center;
 }
 
@@ -779,12 +647,13 @@ a {
     text-align: center;
     font-size: 1.1rem;
     margin-bottom: 2rem;
+    color: var(--text-light);
 }
 
 .quote-contact-box {
     background: var(--light-gray);
-    padding: 2rem;
-    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
     text-align: center;
 }
 
@@ -793,7 +662,7 @@ a {
     font-size: 1.3rem;
     font-weight: 600;
     color: var(--dark-blue);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .quote-phone:last-child,
@@ -804,12 +673,17 @@ a {
 .quote-phone i,
 .quote-email i {
     color: var(--primary-orange);
-    margin-right: 0.5rem;
+    margin-right: 0.75rem;
 }
 
 .quote-phone a,
 .quote-email a {
     color: var(--primary-orange);
+}
+
+.quote-phone a:hover,
+.quote-email a:hover {
+    text-decoration: underline;
 }
 
 /* ========================================
@@ -838,7 +712,7 @@ a {
 
 .footer-section p,
 .footer-section a {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.85);
     line-height: 1.8;
 }
 
@@ -852,16 +726,16 @@ a {
 }
 
 .footer-links li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .footer-contact p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .footer-fleet-img {
     width: 100%;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     margin-bottom: 1rem;
 }
 
@@ -872,19 +746,20 @@ a {
 .social-links {
     display: flex;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 .social-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background: var(--primary-orange);
     border-radius: 50%;
     color: var(--white);
     transition: var(--transition);
+    font-size: 1.2rem;
 }
 
 .social-link:hover {
@@ -893,11 +768,11 @@ a {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.15);
     margin-top: 3rem;
     padding-top: 2rem;
     text-align: center;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.7);
 }
 
 .footer-bottom a {
@@ -911,18 +786,19 @@ a {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     background: var(--primary-orange);
     color: var(--white);
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     opacity: 0;
     visibility: hidden;
     transition: var(--transition);
     z-index: 1000;
+    box-shadow: var(--shadow);
 }
 
 .scroll-top.visible {
@@ -933,6 +809,7 @@ a {
 .scroll-top:hover {
     background: var(--secondary-orange);
     transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
 }
 
 /* ========================================
@@ -974,94 +851,6 @@ a {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* ========================================
-   Responsive Design
-   ======================================== */
-@media (max-width: 768px) {
-    .header-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1rem;
-    }
-
-    .contact-header {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .nav-container {
-        justify-content: space-between;
-    }
-
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--white);
-        flex-direction: column;
-        box-shadow: var(--shadow);
-    }
-
-    .nav-menu.active {
-        display: flex;
-    }
-
-    .mobile-menu-btn {
-        display: block;
-    }
-
-    .hero {
-        padding: 4rem 0;
-    }
-
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .about-content,
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .stats-container,
-    .services-grid,
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .tiktok-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .tiktok-container {
-        margin: 2rem 0;
-    }
-    
-    .tiktok-profile-embed {
-        padding: 1rem;
-        min-height: 500px;
-    }
-    
-    .tiktok-feed-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .tiktok-video {
-        min-height: auto;
-        padding: 0.5rem;
-    }
-
-    .section {
-        padding: 4rem 0;
-    }
 }
 
 /* ========================================
@@ -1150,7 +939,93 @@ a {
     transform: translateY(-50%) scale(1.1);
 }
 
+/* ========================================
+   Responsive Design
+   ======================================== */
 @media (max-width: 768px) {
+    .header-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .contact-header {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-container {
+        justify-content: space-between;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        box-shadow: var(--shadow);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .hero {
+        padding: 6rem 0;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .stats-container,
+    .services-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tiktok-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .tiktok-container {
+        margin: 2rem 0;
+    }
+    
+    .tiktok-profile-embed {
+        padding: 1rem;
+        min-height: 500px;
+    }
+    
+    .tiktok-feed-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .tiktok-video {
+        min-height: auto;
+        padding: 0.5rem;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+    
     .lightbox-close {
         top: 20px;
         right: 20px;
